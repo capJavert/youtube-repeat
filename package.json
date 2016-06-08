@@ -1,0 +1,16 @@
+{
+  "title": "Youtube Repeat",
+  "name": "youtube-repeat",
+  "version": "0.0.1",
+  "description": "Repeat functionality on any youtube song",
+  "main": "index.js",
+  "author": "capJavert",
+  "engines": {
+    "firefox": ">=38.0a1"
+  },
+  "license": "MIT",
+  "keywords": [
+    ""
+  ],
+  "preferences": [{}]
+}

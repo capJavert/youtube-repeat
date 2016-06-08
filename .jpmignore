@@ -1,0 +1,17 @@
+# phpstorm project files
+.idea
+
+# Ignore .DS_Store files created by mac
+.DS_Store
+
+# Ignore any zip or xpi files
+*.zip
+*.xpi
+
+# readme and git directory
+README.md
+.git
+
+#ignore files
+.gitignore
+.jpmignore
