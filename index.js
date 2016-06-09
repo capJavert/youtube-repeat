@@ -28,6 +28,14 @@ tabs.on('ready', function(state, tab) {
 });
 
 function toggleRepeat(state, reloaded) {
+    if(typeof tab == "undefined") {
+        tab = tabs.activeTab;
+
+        if(tab.url.split("www.youtube.com/watch")<=1) {
+            return 0;
+        }
+    }
+
     if(typeof reloaded == "undefined") {
         reloaded = false;
     }
@@ -43,10 +51,6 @@ function toggleRepeat(state, reloaded) {
         reload = false;
 
         return 0;
-    }
-
-    if(typeof tab == "undefined") {
-        tab = tabs.activeTab;
     }
 
     tab.attach({contentScript: 'self.port.emit("html", document.body.innerHTML);'}).port.on("html", function(html) {
