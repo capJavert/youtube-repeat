@@ -12,8 +12,9 @@ var button = buttons.ActionButton({
     id: "youtube-repeat",
     label: "Toggle Repeat",
     icon: {
-        "32": "./icon.png",
-        "64": "./icon.png"
+		"16": "./icon-16.png",
+        "32": "./icon-32.png",
+        "64": "./icon-64.png"
     },
 
     badge: null,
