@@ -1,7 +1,7 @@
 {
   "title": "Youtube Repeat",
   "name": "youtube-repeat",
-  "version": "0.0.1",
+  "version": "0.1.2",
   "description": "Repeat functionality on any youtube song. Just click repeat button and enioy :)",
   "main": "index.js",
   "author": "capJavert",
