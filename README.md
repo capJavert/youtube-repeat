@@ -3,4 +3,4 @@
 
 <h3>Version 0.1.3</h3>
 <a href="https://addons.mozilla.org/en-US/firefox/addon/youtube-repeat/">https://addons.mozilla.org/en-US/firefox/addon/youtube-repeat/</a>
-<p>Repeat functionality on any youtube song. Just click repeat button and enioy :)</p>
+<p>Repeat functionality on any youtube video. Just click repeat button and enioy :)</p>
