@@ -1,11 +1,14 @@
-var self = require('sdk/self');
-var buttons = require('sdk/ui/button/toggle');
+var sdk = require('sdk/self');
+var buttons = require('sdk/ui/button/action');
 var tabs = require("sdk/tabs");
-var workers = require("sdk/page-worker");
+//var worker = require("sdk/page-worker").Page({
+//	contentScriptFile: sdk.data.url("../scripts/worker.js"),
+	//contentURL: "http://en.wikipedia.org/wiki/Internet"
+//});;
 var listener;
 var reload = false;
 
-var button = buttons.ToggleButton({
+var button = buttons.ActionButton({
     id: "youtube-repeat",
     label: "Toggle Repeat",
     icon: {
@@ -30,10 +33,12 @@ tabs.on('ready', function(state, tab) {
 function toggleRepeat(state, reloaded) {
     if(typeof tab == "undefined") {
         tab = tabs.activeTab;
+    }
 
-        if(tab.url.split("www.youtube.com/watch")<=1) {
-            return 0;
-        }
+    if(tab.url.split("www.youtube.com/watch").length<2) {
+    	//console.log("not yt url");
+
+    	return 0;
     }
 
     if(typeof reloaded == "undefined") {
@@ -49,31 +54,26 @@ function toggleRepeat(state, reloaded) {
     } else if(button.badge=="Looping" && reloaded == false) {
         button.badge = null;
         reload = false;
-
-        return 0;
     }
 
-    tab.attach({contentScript: 'self.port.emit("html", document.body.innerHTML);'}).port.on("html", function(html) {
-        if(html!="") {
-            var indexZero = html.search('ytp-time-current">')+18;
-            var indexEnd = html.search('ytp-time-duration">')+19;
-            time = html.substr(indexZero, 4);
-            timeEnd = html.substr(indexEnd, 4);
-            time = time.split(':');
-            timeEnd = timeEnd.split(':');
-            var seconds = (+time[0]) * 60 + (+time[1]); 
-            var secondsEnd = (+timeEnd[0]) * 60 + (+timeEnd[1]); 
+	worker = tab.attach({
+		contentScriptFile: sdk.data.url("../scripts/worker.js")
+	});
 
-            if(seconds>=secondsEnd) {
-                if(reload) {
-                    tab.reload();
-                }
-                
-                return 0;
-            }
+    //console.log("send message");
+    //worker.postMessage([tab]);
+    worker.port.emit("monitor", tab.url);
 
-            //console.log(seconds);
-            toggleRepeat(state, true);
-        }
-    });
+	worker.port.on("html", function(message) {
+		worker.port.emit("monitor", tab.url);
+	});
+
+	worker.port.on("reload", function(message) {
+		//console.log("reloaded");
+		worker.port.removeListener("html").removeListener("reload");
+
+		if(reload) {
+		    tab.reload();
+		}
+	});
 }
