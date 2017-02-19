@@ -1,4 +1,4 @@
-<h1>Youtube Repeat</h1>
+<h1>Youtube Repeat</h1>[![Build Status](https://travis-ci.org/capJavert/youtube-repeat.svg?branch=master)](https://travis-ci.org/capJavert/youtube-repeat)
 <h2>Firefox plugin</h2>
 
 <h3>Version 0.1.3</h3>
