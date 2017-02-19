@@ -1,6 +1,6 @@
 var main = require("../");
 
-/*exports["test main"] = function(assert) {
+exports["test main"] = function(assert) {
   assert.pass("Unit test running!");
 };
 
@@ -14,6 +14,6 @@ exports["test dummy"] = function(assert, done) {
     assert.ok((text === "foo"), "Is the text actually 'foo'");
     done();
   });
-};*/
+};
 
-//require("sdk/test").run(exports);
+require("sdk/test").run(exports);

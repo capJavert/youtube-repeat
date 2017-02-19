@@ -31,6 +31,14 @@ tabs.on('ready', function(state, tab) {
     }
 });
 
+// a dummy function, to show how tests work.
+// to see how to test this function, look at test/test-index.js
+function dummy(text, callback) {
+    callback(text);
+}
+
+exports.dummy = dummy;
+
 function toggleRepeat(state, reloaded) {
     if(typeof tab == "undefined") {
         tab = tabs.activeTab;
